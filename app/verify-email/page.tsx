@@ -1,13 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { motion } from 'framer-motion'
 import { Mail, ArrowRight, CheckCircle, Home } from 'lucide-react'
 import Link from 'next/link'
 
-export default function VerifyEmailPage() {
+function VerifyEmailContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const supabase = createClient()
@@ -32,7 +32,7 @@ export default function VerifyEmailPage() {
         }
       })
     }
-  }, [])
+  }, [searchParams, supabase])
 
   const handleCodeChange = (index: number, value: string) => {
     if (value.length > 1) return // Only allow single digit
@@ -273,6 +273,23 @@ export default function VerifyEmailPage() {
         </div>
       </motion.div>
     </main>
+  )
+}
+
+export default function VerifyEmailPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-main-950 flex items-center justify-center px-6">
+        <div className="text-center">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-gold/20 flex items-center justify-center mx-auto mb-6 animate-pulse">
+            <Mail className="w-8 h-8 text-gold-400" />
+          </div>
+          <p className="text-type-100">Loading...</p>
+        </div>
+      </main>
+    }>
+      <VerifyEmailContent />
+    </Suspense>
   )
 }
 
