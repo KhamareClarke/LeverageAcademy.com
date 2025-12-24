@@ -28,19 +28,7 @@ export async function POST(request: Request) {
 
     // Send email with verification code
     try {
-      // Option 1: Use Supabase's built-in email (if SMTP is configured)
-      const { error: emailError } = await supabase.auth.resend({
-        type: 'signup',
-        email,
-        options: {
-          data: {
-            verification_code: code,
-          },
-        },
-      })
-
-      // Always use Gmail SMTP (skip Supabase email)
-      // Try sending via custom email route (Gmail SMTP)
+      // Use custom email route (Gmail SMTP) to send verification code
       const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
       const emailResponse = await fetch(`${baseUrl}/api/send-email`, {
         method: 'POST',
