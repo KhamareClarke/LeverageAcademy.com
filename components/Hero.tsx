@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
+import { useAuth } from './AuthProvider'
+import Link from 'next/link'
 
 export default function Hero() {
+  const { user, loading } = useAuth()
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden pt-32">
       {/* Animated gradient background */}
@@ -64,24 +67,40 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col sm:flex-row gap-5 justify-center pt-2"
           >
-            <motion.button 
-              className="group relative px-12 py-5 bg-gradient-gold text-black text-base font-bold rounded-xl overflow-hidden shadow-glow-gold-lg"
+            <motion.a
+              href="#courses"
+              className="group relative px-12 py-5 bg-gradient-gold text-black text-base font-bold rounded-xl overflow-hidden shadow-glow-gold-lg inline-flex items-center justify-center"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
               <div className="absolute inset-0 bg-gradient-animated bg-[length:200%_auto] animate-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative z-10 flex items-center gap-2">
-                Apply for Access
+                Browse Courses
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </span>
-            </motion.button>
-            <motion.button 
-              className="px-12 py-5 glass-pill text-type-50 text-base font-semibold rounded-xl hover:bg-white/10 border border-gold-400/30 hover:border-gold-400/50 transition-all duration-300 hover:shadow-glow-gold backdrop-blur-2xl"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              View Curriculum
-            </motion.button>
+            </motion.a>
+            {!loading && (
+              user ? (
+                <Link href={user.role === 'admin' ? '/admin' : '/student'}>
+                  <motion.div
+                    className="px-12 py-5 glass-pill text-type-50 text-base font-semibold rounded-xl hover:bg-white/10 border border-gold-400/30 hover:border-gold-400/50 transition-all duration-300 hover:shadow-glow-gold backdrop-blur-2xl inline-flex items-center justify-center cursor-pointer"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Dashboard
+                  </motion.div>
+                </Link>
+              ) : (
+                <motion.a
+                  href="/login"
+                  className="px-12 py-5 glass-pill text-type-50 text-base font-semibold rounded-xl hover:bg-white/10 border border-gold-400/30 hover:border-gold-400/50 transition-all duration-300 hover:shadow-glow-gold backdrop-blur-2xl inline-flex items-center justify-center"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Sign In
+                </motion.a>
+              )
+            )}
           </motion.div>
 
           {/* Trust indicators */}

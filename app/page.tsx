@@ -3,6 +3,7 @@
 import FloatingNav from '@/components/FloatingNav'
 import Hero from '@/components/Hero'
 import BentoGrid from '@/components/BentoGrid'
+import CoursesSection from '@/components/CoursesSection'
 import { motion } from 'framer-motion'
 import { Sparkles, Code2, Layers, ArrowRight } from 'lucide-react'
 
@@ -13,6 +14,7 @@ export default function Home() {
       
       <Hero />
       <BentoGrid />
+      <CoursesSection />
       <ProductDepth />
       <AuthoritySection />
       <FAQSection />
@@ -217,19 +219,20 @@ function AuthoritySection() {
           className="text-center mt-16"
         >
           <div className="flex flex-col sm:flex-row gap-5 justify-center">
-            <motion.button
-              className="relative px-12 py-5 bg-gradient-gold text-black text-base font-bold rounded-xl overflow-hidden group shadow-glow-gold-lg"
+            <motion.a
+              href="#courses"
+              className="relative px-12 py-5 bg-gradient-gold text-black text-base font-bold rounded-xl overflow-hidden group shadow-glow-gold-lg inline-flex items-center justify-center"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
               <div className="absolute inset-0 bg-gradient-animated bg-[length:200%_auto] animate-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative z-10 flex items-center gap-2">
-                Apply Now
+                Browse Courses
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </span>
-            </motion.button>
+            </motion.a>
             <motion.button
               className="px-12 py-5 glass-pill text-type-50 text-base font-semibold rounded-xl hover:bg-white/10 border border-gold-400/30 hover:border-gold-400/50 transition-all duration-300 hover:shadow-glow-gold backdrop-blur-2xl"
               whileHover={{ scale: 1.05, y: -2 }}
@@ -319,19 +322,20 @@ function FAQSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-center mt-16"
         >
-          <motion.button
-            className="relative px-12 py-5 bg-gradient-gold text-black text-base font-bold rounded-xl overflow-hidden group shadow-glow-gold-lg"
+          <motion.a
+            href="#courses"
+            className="relative px-12 py-5 bg-gradient-gold text-black text-base font-bold rounded-xl overflow-hidden group shadow-glow-gold-lg inline-flex items-center justify-center"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
             <div className="absolute inset-0 bg-gradient-animated bg-[length:200%_auto] animate-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <span className="relative z-10 flex items-center gap-2">
-              Ready to Apply?
+              Browse Courses
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </span>
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
     </section>
@@ -368,19 +372,20 @@ function FinalCTA() {
         <p className="text-type-100 text-2xl md:text-3xl leading-relaxed mb-16 max-w-4xl mx-auto font-light">
           Leverage Academy is not for everyone. It's for elite builders who want <span className="bg-gradient-gold bg-clip-text text-transparent animate-shimmer bg-[length:200%_auto] font-semibold">systems that work while they sleep</span>.
         </p>
-        <motion.button 
-          className="relative px-16 py-6 bg-gradient-gold text-black text-lg font-bold rounded-xl overflow-hidden group shadow-glow-gold-lg"
+        <motion.a
+          href="#courses"
+          className="relative px-16 py-6 bg-gradient-gold text-black text-lg font-bold rounded-xl overflow-hidden group shadow-glow-gold-lg inline-flex items-center justify-center"
           whileHover={{ scale: 1.05, y: -4 }}
           whileTap={{ scale: 0.98 }}
         >
           <div className="absolute inset-0 bg-gradient-animated bg-[length:200%_auto] animate-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <span className="relative z-10 flex items-center gap-3">
-            Apply for Leverage Academy
+            Browse Courses
             <svg className="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </span>
-        </motion.button>
+        </motion.a>
       </motion.div>
     </section>
   )

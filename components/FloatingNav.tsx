@@ -2,9 +2,12 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { useAuth } from './AuthProvider'
+import Link from 'next/link'
 
 export default function FloatingNav() {
   const [scrolled, setScrolled] = useState(false)
+  const { user, loading } = useAuth()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,14 +65,30 @@ export default function FloatingNav() {
             </motion.a>
           </div>
 
-          <motion.button 
-            className="relative px-8 py-2.5 bg-gradient-gold text-black text-sm font-bold rounded-full overflow-hidden group shadow-glow-gold"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <div className="absolute inset-0 bg-gradient-animated bg-[length:200%_auto] animate-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="relative z-10">Apply Now</span>
-          </motion.button>
+          {!loading && (
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {user ? (
+                <Link
+                  href={user.role === 'admin' ? '/admin' : '/student'}
+                  className="relative px-8 py-2.5 bg-gradient-gold text-black text-sm font-bold rounded-full overflow-hidden group shadow-glow-gold inline-flex items-center justify-center"
+                >
+                  <div className="absolute inset-0 bg-gradient-animated bg-[length:200%_auto] animate-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="relative z-10">Dashboard</span>
+                </Link>
+              ) : (
+                <Link
+                  href="/login"
+                  className="relative px-8 py-2.5 bg-gradient-gold text-black text-sm font-bold rounded-full overflow-hidden group shadow-glow-gold inline-flex items-center justify-center"
+                >
+                  <div className="absolute inset-0 bg-gradient-animated bg-[length:200%_auto] animate-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="relative z-10">Sign In</span>
+                </Link>
+              )}
+            </motion.div>
+          )}
         </div>
       </div>
     </motion.nav>

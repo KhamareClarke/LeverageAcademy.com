@@ -8,7 +8,17 @@ A premium, private education platform for builders designing AI systems, busines
 - **TypeScript**
 - **Tailwind CSS**
 - **Framer Motion** (for subtle animations)
+- **Supabase** (Database & Authentication)
 - Desktop-first, fully responsive
+
+## Features
+
+- **Role-Based Access Control**: Admin and Student roles with separate dashboards
+- **Course Management**: Admins can create, manage, and publish courses
+- **Application System**: Students apply to courses, admins review and approve
+- **Payment Processing**: Students pay after approval to access courses
+- **Lesson Tracking**: Students track progress through course lessons
+- **Progress Analytics**: Admins can view student progress and enrollments
 
 ## Getting Started
 
