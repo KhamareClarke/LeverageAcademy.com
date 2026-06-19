@@ -1,0 +1,132 @@
+import { createClient } from '@/lib/supabase/server'
+import { NextResponse } from 'next/server'
+
+export async function GET(request: Request) {
+  try {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const { searchParams } = new URL(request.url)
+    const courseId = searchParams.get('course_id')
+
+    if (!courseId) {
+      return NextResponse.json({ error: 'Course ID is required' }, { status: 400 })
+    }
+
+    const { data: progress, error } = await supabase
+      .from('lesson_progress')
+      .select('*')
+      .eq('user_id', user.id)
+      .eq('course_id', courseId)
+
+    if (error) {
+      console.error('Error fetching lesson progress:', error)
+      return NextResponse.json({ progress: [] })
+    }
+
+    return NextResponse.json({ progress: progress || [] })
+  } catch (error: any) {
+    console.error('Error in progress GET:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const body = await request.json()
+    const { lesson_id, course_id, completed } = body
+
+    if (!lesson_id || !course_id) {
+      return NextResponse.json({ error: 'Lesson ID and Course ID are required' }, { status: 400 })
+    }
+
+    // Check enrollment status - user must have paid enrollment
+    const { data: enrollment } = await supabase
+      .from('enrollments')
+      .select('id, payment_status, is_active')
+      .eq('user_id', user.id)
+      .eq('course_id', course_id)
+      .single()
+
+    if (!enrollment || enrollment.payment_status !== 'paid' || !enrollment.is_active) {
+      return NextResponse.json(
+        { error: 'Payment required to access this course' },
+        { status: 403 }
+      )
+    }
+
+    const { data: lesson, error: lessonError } = await supabase
+      .from('lessons')
+      .select('id, module_id, course_id')
+      .eq('id', lesson_id)
+      .single()
+
+    if (lessonError || !lesson || lesson.course_id !== course_id) {
+      return NextResponse.json({ error: 'Lesson not found' }, { status: 404 })
+    }
+
+    const completedAt = completed === false ? null : new Date().toISOString()
+
+    const { error: upsertError } = await supabase
+      .from('lesson_progress')
+      .upsert({
+        user_id: user.id,
+        lesson_id,
+        course_id,
+        completed: completed !== false,
+        completed_at: completedAt,
+      }, { onConflict: 'user_id,lesson_id' })
+
+    if (upsertError) {
+      console.error('Error upserting lesson progress:', upsertError)
+      return NextResponse.json({ error: 'Failed to update lesson progress' }, { status: 500 })
+    }
+
+    const { data: moduleLessons } = await supabase
+      .from('lessons')
+      .select('id')
+      .eq('module_id', lesson.module_id)
+
+    const lessonIds = (moduleLessons || []).map((l: any) => l.id)
+    const totalLessons = lessonIds.length
+
+    const { data: completedLessons } = await supabase
+      .from('lesson_progress')
+      .select('lesson_id')
+      .eq('user_id', user.id)
+      .eq('course_id', course_id)
+      .in('lesson_id', lessonIds)
+      .eq('completed', true)
+
+    const completedCount = (completedLessons || []).length
+    const moduleCompleted = totalLessons > 0 && completedCount === totalLessons
+
+    await supabase
+      .from('module_progress')
+      .upsert({
+        user_id: user.id,
+        module_id: lesson.module_id,
+        course_id,
+        lessons_completed: completedCount,
+        total_lessons: totalLessons,
+        module_completed: moduleCompleted,
+        completed_at: moduleCompleted ? new Date().toISOString() : null,
+      }, { onConflict: 'user_id,module_id' })
+
+    return NextResponse.json({ success: true })
+  } catch (error: any) {
+    console.error('Error in progress POST:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  }
+}

@@ -1,0 +1,79 @@
+{"location":"signup/page.tsx:74","message":"BEFORE supabase.auth.signUp","data":{"timestamp":1767027416464},"timestamp":1767027416464,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:45","message":"handleSignup called","data":{"email":"clark***","hasFullName":true,"hasPassword":true},"timestamp":1767027416460,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:62","message":"Setting loading state","data":{"beforeLoading":false},"timestamp":1767027416462,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"signup/page.tsx:67","message":"Timeout set","data":{"timeoutMs":15000},"timestamp":1767027416463,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"signup/page.tsx:71","message":"TIMEOUT FIRED","data":{"elapsed":1767027432008},"timestamp":1767027432008,"sessionId":"debug-session","runId":"run1","hypothesisId":"B"}
+{"location":"signup/page.tsx:45","message":"handleSignup called","data":{"email":"clark***","hasFullName":true,"hasPassword":true},"timestamp":1767027607674,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:62","message":"Setting loading state","data":{"beforeLoading":false},"timestamp":1767027607680,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"signup/page.tsx:67","message":"Timeout set","data":{"timeoutMs":10000},"timestamp":1767027607681,"sessionId":"debug-session","runId":"run2","hypothesisId":"B"}
+{"location":"signup/page.tsx:74","message":"BEFORE supabase.auth.signUp (non-blocking)","data":{"timestamp":1767027607682},"timestamp":1767027607682,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:71","message":"TIMEOUT FIRED - stopping loading","data":{"elapsed":1767027617691},"timestamp":1767027617691,"sessionId":"debug-session","runId":"run2","hypothesisId":"B"}
+{"location":"signup/page.tsx:45","message":"handleSignup called","data":{"email":"clark***","hasFullName":true,"hasPassword":true},"timestamp":1767027989136,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:62","message":"Setting loading state","data":{"beforeLoading":false},"timestamp":1767027989137,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"signup/page.tsx:67","message":"Timeout set","data":{"timeoutMs":10000},"timestamp":1767027989138,"sessionId":"debug-session","runId":"run2","hypothesisId":"B"}
+{"location":"signup/page.tsx:74","message":"BEFORE supabase.auth.signUp (non-blocking)","data":{"timestamp":1767027989139},"timestamp":1767027989139,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":1},"timestamp":1767027991156,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":1,"maxChecks":15},"timestamp":1767027991155,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":2,"maxChecks":15},"timestamp":1767027993158,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":2},"timestamp":1767027993159,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":3,"maxChecks":15},"timestamp":1767027995156,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":3},"timestamp":1767027995157,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":4,"maxChecks":15},"timestamp":1767027997143,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":4},"timestamp":1767027997144,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:71","message":"TIMEOUT FIRED - stopping loading","data":{"elapsed":1767027999142},"timestamp":1767027999142,"sessionId":"debug-session","runId":"run2","hypothesisId":"B"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":5,"maxChecks":15},"timestamp":1767027999148,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":5},"timestamp":1767027999149,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":6,"maxChecks":15},"timestamp":1767028001157,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":6},"timestamp":1767028001158,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":7,"maxChecks":15},"timestamp":1767028003149,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":7},"timestamp":1767028003150,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":8,"maxChecks":15},"timestamp":1767028005151,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":8},"timestamp":1767028005152,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":9,"maxChecks":15},"timestamp":1767028007146,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":9},"timestamp":1767028007147,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":10,"maxChecks":15},"timestamp":1767028009157,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":10},"timestamp":1767028009159,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":11,"maxChecks":15},"timestamp":1767028011143,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":11},"timestamp":1767028011146,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":12,"maxChecks":15},"timestamp":1767028013146,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":12},"timestamp":1767028013148,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":13,"maxChecks":15},"timestamp":1767028016005,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":13},"timestamp":1767028016006,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:107","message":"Periodic check running","data":{"checkCount":14,"maxChecks":15},"timestamp":1767028017432,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"Attempting sign-in check","data":{"checkCount":14},"timestamp":1767028017433,"sessionId":"debug-session","runId":"run2","hypothesisId":"A"}
+{"location":"signup/page.tsx:87","message":"Final timeout - showing manual option","data":{"timestamp":1767028019143},"timestamp":1767028019143,"sessionId":"debug-session","runId":"run2","hypothesisId":"B"}
+{"location":"signup/page.tsx:135","message":"Redirecting to verification page","data":{"timestamp":1767028459044},"timestamp":1767028459044,"sessionId":"debug-session","runId":"run3","hypothesisId":"A"}
+{"location":"signup/page.tsx:97","message":"Firing signUp and redirecting immediately","data":{"timestamp":1767028459042},"timestamp":1767028459042,"sessionId":"debug-session","runId":"run3","hypothesisId":"A"}
+{"location":"signup/page.tsx:67","message":"Timeout set","data":{"timeoutMs":10000},"timestamp":1767028459041,"sessionId":"debug-session","runId":"run2","hypothesisId":"B"}
+{"location":"signup/page.tsx:45","message":"handleSignup called","data":{"email":"clark***","hasFullName":true,"hasPassword":true},"timestamp":1767028459040,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:62","message":"Setting loading state","data":{"beforeLoading":false},"timestamp":1767028459041,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"verify-email/page.tsx:35","message":"Auto-sending verification code","data":{"email":"clark***"},"timestamp":1767028560546,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:45","message":"handleSignup called","data":{"email":"clark***","hasFullName":true,"hasPassword":true},"timestamp":1767028680618,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:62","message":"Setting loading state","data":{"beforeLoading":false},"timestamp":1767028680619,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"signup/page.tsx:135","message":"Redirecting to verification page","data":{"timestamp":1767028680627},"timestamp":1767028680627,"sessionId":"debug-session","runId":"run3","hypothesisId":"A"}
+{"location":"signup/page.tsx:67","message":"Timeout set","data":{"timeoutMs":10000},"timestamp":1767028680620,"sessionId":"debug-session","runId":"run2","hypothesisId":"B"}
+{"location":"signup/page.tsx:97","message":"Firing signUp and redirecting immediately","data":{"timestamp":1767028680621},"timestamp":1767028680621,"sessionId":"debug-session","runId":"run3","hypothesisId":"A"}
+{"location":"verify-email/page.tsx:35","message":"Auto-sending verification code","data":{"email":"clark***"},"timestamp":1767028682559,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"verify-email/page.tsx:35","message":"Auto-sending verification code","data":{"email":"clark***"},"timestamp":1767028682557,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:45","message":"handleSignup called","data":{"email":"clark***","hasFullName":true,"hasPassword":true},"timestamp":1767028877542,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:62","message":"Setting loading state","data":{"beforeLoading":false},"timestamp":1767028877543,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"signup/page.tsx:67","message":"Timeout set","data":{"timeoutMs":10000},"timestamp":1767028877544,"sessionId":"debug-session","runId":"run2","hypothesisId":"B"}
+{"location":"signup/page.tsx:97","message":"Firing signUp and redirecting immediately","data":{"timestamp":1767028877545},"timestamp":1767028877545,"sessionId":"debug-session","runId":"run3","hypothesisId":"A"}
+{"location":"signup/page.tsx:135","message":"Redirecting to verification page","data":{"timestamp":1767028877547},"timestamp":1767028877547,"sessionId":"debug-session","runId":"run3","hypothesisId":"A"}
+{"location":"verify-email/page.tsx:35","message":"Auto-sending verification code","data":{"email":"clark***"},"timestamp":1767028879790,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"verify-email/page.tsx:35","message":"Auto-sending verification code","data":{"email":"clark***"},"timestamp":1767028879788,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:45","message":"handleSignup called","data":{"email":"clark***","hasFullName":true,"hasPassword":true},"timestamp":1767028965100,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:62","message":"Setting loading state","data":{"beforeLoading":false},"timestamp":1767028965102,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"signup/page.tsx:135","message":"Redirecting to verification page","data":{"timestamp":1767028965107},"timestamp":1767028965107,"sessionId":"debug-session","runId":"run3","hypothesisId":"A"}
+{"location":"signup/page.tsx:97","message":"Firing signUp and redirecting immediately","data":{"timestamp":1767028965105},"timestamp":1767028965105,"sessionId":"debug-session","runId":"run3","hypothesisId":"A"}
+{"location":"signup/page.tsx:67","message":"Timeout set","data":{"timeoutMs":10000},"timestamp":1767028965104,"sessionId":"debug-session","runId":"run2","hypothesisId":"B"}
+{"location":"verify-email/page.tsx:35","message":"Auto-sending verification code","data":{"email":"clark***"},"timestamp":1767028967193,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"verify-email/page.tsx:35","message":"Auto-sending verification code","data":{"email":"clark***"},"timestamp":1767028967194,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:45","message":"handleSignup called","data":{"email":"clark***","hasFullName":true,"hasPassword":true},"timestamp":1767029179234,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:62","message":"Setting loading state","data":{"beforeLoading":false},"timestamp":1767029179239,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"signup/page.tsx:97","message":"Firing signUp and redirecting immediately","data":{"timestamp":1767029179242},"timestamp":1767029179242,"sessionId":"debug-session","runId":"run3","hypothesisId":"A"}
+{"location":"signup/page.tsx:67","message":"Timeout set","data":{"timeoutMs":10000},"timestamp":1767029179241,"sessionId":"debug-session","runId":"run2","hypothesisId":"B"}
+{"location":"signup/page.tsx:135","message":"Redirecting to verification page","data":{"timestamp":1767029179244},"timestamp":1767029179244,"sessionId":"debug-session","runId":"run3","hypothesisId":"A"}
+{"location":"verify-email/page.tsx:35","message":"Auto-sending verification code","data":{"email":"clark***"},"timestamp":1767029181787,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"verify-email/page.tsx:35","message":"Auto-sending verification code","data":{"email":"clark***"},"timestamp":1767029181789,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"signup/page.tsx:115","message":"SignUp completed (background)","data":{"hasData":true,"hasError":true,"hasUser":false},"timestamp":1767029204494,"sessionId":"debug-session","runId":"run3","hypothesisId":"A"}

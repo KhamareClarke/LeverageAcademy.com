@@ -1,0 +1,28 @@
+# Leverage Academy — llms.txt
+# AI Systems & Business Infrastructure Education Platform
+
+> Leverage Academy is a private, application-based education platform for builders designing AI systems, business infrastructure, and digital assets that compound over time. Founded by Khamare Clarke.
+
+## About
+Leverage Academy teaches elite builders how to create systems that generate exponential leverage — replacing effort with architecture. Not courses. Not content. Real operational systems.
+
+## Key Pages
+- /: Homepage — platform overview, curriculum, and application process
+- /about: Founder background, credentials, and mission
+- /login: Student sign in
+- /signup: Create account
+- /contact: Get in touch
+
+## Curriculum Areas
+- AI Agent Workflows — autonomous systems that execute complex tasks
+- Revenue Infrastructure — monetization systems that operate independently
+- Knowledge Systems — information architectures that scale expertise
+- Distribution Engines — automated reach and influence mechanisms
+
+## Founder
+Khamare Clarke — Founder & Chief Architect
+500+ systems built, 50+ ventures launched, 8+ years operating, £10M+ revenue generated
+
+## AI Crawler Permissions
+Permitted: Content indexing and citation for educational and informational purposes
+Contact: leverageacademy.com/contact

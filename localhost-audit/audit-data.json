@@ -1,0 +1,276 @@
+{
+  "summary": {
+    "health_score": 32,
+    "business_type": "EdTech — Private application-based online education platform (AI systems, business infrastructure, digital assets). UK market (GBP pricing). Single-page marketing site with authenticated course area.",
+    "top_findings": [
+      "Site returns HTTP 500 on all pages due to missing Supabase environment variables — completely unindexable",
+      "Homepage uses 'use client' directive — disables server-side rendering, content invisible to crawlers",
+      "No sitemap.xml or robots.txt — crawlers have no navigation guidance",
+      "No structured data (schema.org) — zero rich result eligibility",
+      "No Open Graph or Twitter Card meta tags — poor social sharing appearance"
+    ],
+    "quick_wins": [
+      "Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to .env.local to fix 500 errors",
+      "Create app/sitemap.ts and app/robots.ts (Next.js 14 built-ins, ~10 lines each)",
+      "Add OG/Twitter meta tags to layout.tsx metadata export",
+      "Add FAQPage JSON-LD schema — FAQ content already exists in page.tsx",
+      "Convert homepage to Server Component by moving client interactions to child components"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 15,
+      "what_works": [
+        "html lang='en' attribute present",
+        "next/font used with display: swap for both Fraunces and Inter",
+        "Middleware matcher excludes static assets correctly",
+        "reactStrictMode enabled in next.config.js"
+      ],
+      "findings": [
+        {
+          "title": "HTTP 500 on all pages — site completely unindexable",
+          "severity": "Critical",
+          "description": "The Supabase middleware (middleware.ts) runs on every request and throws 'Your project's URL and Key are required to create a Supabase client' when env vars are absent. This returns a 500 to all visitors including Googlebot.",
+          "recommendation": "Create .env.local with NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY. For production, add these to your hosting provider's environment variables."
+        },
+        {
+          "title": "No robots.txt",
+          "severity": "High",
+          "description": "No robots.txt or app/robots.ts found. Crawlers receive a 500 error when requesting /robots.txt, giving no direction on what to crawl or block.",
+          "recommendation": "Create app/robots.ts using Next.js 14 MetadataRoute.Robots. Allow all public routes, disallow /admin/* and /api/*."
+        },
+        {
+          "title": "No sitemap.xml",
+          "severity": "High",
+          "description": "No sitemap.ts or sitemap.xml found. Google cannot discover pages systematically.",
+          "recommendation": "Create app/sitemap.ts using Next.js 14 MetadataRoute.Sitemap. Include homepage, /login, /signup, and dynamic course pages fetched from Supabase."
+        },
+        {
+          "title": "Middleware blocks every page including public marketing pages",
+          "severity": "High",
+          "description": "middleware.ts runs Supabase session refresh on ALL routes (matcher catches everything except static assets). Public marketing content doesn't need auth middleware.",
+          "recommendation": "Narrow the matcher to only protected routes: ['/student/:path*', '/admin/:path*', '/apply/:path*']. Keep homepage, /login, /signup outside middleware."
+        },
+        {
+          "title": "No canonical URL configured",
+          "severity": "Medium",
+          "description": "No canonical tag in metadata. If the site is accessible on multiple domains (www vs non-www) or HTTP vs HTTPS, duplicate content penalties can occur.",
+          "recommendation": "Add metadataBase and alternates.canonical to the metadata export in layout.tsx."
+        },
+        {
+          "title": "No favicon defined",
+          "severity": "Low",
+          "description": "No favicon.ico or app/icon.tsx found. Browsers and some search engines use favicons for brand recognition.",
+          "recommendation": "Add a favicon.ico to the /public directory or create app/icon.tsx for dynamic generation."
+        }
+      ]
+    },
+    {
+      "name": "Content Quality (E-E-A-T)",
+      "score": 48,
+      "what_works": [
+        "Clear founder attribution (Khamare Clarke, Founder & Chief Architect)",
+        "Specific credibility signals: 500+ Systems Built, 50+ Ventures Launched, 8+ Years Operating, £10M+ Revenue Generated",
+        "Strong value proposition with clear differentiation ('Not courses. Not content. Systems.')",
+        "FAQ section addresses real objections with specific, honest answers",
+        "30-day refund policy stated clearly"
+      ],
+      "findings": [
+        {
+          "title": "Homepage is 'use client' — content not server-rendered",
+          "severity": "Critical",
+          "description": "app/page.tsx has 'use client' at line 1. This forces the entire homepage to render in the browser. Googlebot may not execute JavaScript, meaning the hero headline, value propositions, FAQ, and all marketing copy are invisible to search engines.",
+          "recommendation": "Convert app/page.tsx to a Server Component. Extract only the parts that need interactivity (FloatingNav auth state, motion animations) into separate child Client Components. The static sections (ProductDepth, AuthoritySection, FAQSection, FinalCTA, Footer) require no client-side JS and should render server-side."
+        },
+        {
+          "title": "No author bio or credentials page",
+          "severity": "Medium",
+          "description": "Khamare Clarke is mentioned with strong claims but there's no dedicated about page, bio, or external proof links (LinkedIn, media mentions, case studies). Google's E-E-A-T requires verifiable expertise.",
+          "recommendation": "Create an /about page with founder bio, verifiable credentials, media mentions, and links to external proof. Add Person schema markup."
+        },
+        {
+          "title": "Copyright year is outdated (© 2024)",
+          "severity": "Low",
+          "description": "Footer shows © 2024 Leverage Academy. It is currently 2026.",
+          "recommendation": "Update to dynamic year: {new Date().getFullYear()} in the Footer component."
+        },
+        {
+          "title": "Footer links are placeholder anchors (#)",
+          "severity": "Medium",
+          "description": "Privacy, Terms, and Contact links in the footer all point to '#'. These are legally required pages and expected by Google's quality evaluators.",
+          "recommendation": "Create /privacy, /terms, and /contact pages and link them properly."
+        }
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 42,
+      "what_works": [
+        "Title tag present: 'Leverage Academy'",
+        "Meta description present and keyword-rich",
+        "H1 is strong and present: 'Build systems. Create leverage. Own the outcome.'",
+        "H2 → H3 heading hierarchy maintained throughout page",
+        "Section IDs for anchor navigation: #courses, #curriculum, #faq, #about",
+        "Internal links using Next.js Link component"
+      ],
+      "findings": [
+        {
+          "title": "Title tag missing primary keyword",
+          "severity": "High",
+          "description": "Title is just 'Leverage Academy' (17 chars). No keyword context for search engines. Searches for 'AI systems education', 'online business infrastructure course', 'AI training for founders' would have no title signal.",
+          "recommendation": "Update to: 'Leverage Academy | AI Systems & Business Infrastructure Courses for Builders' (under 60 chars for the important part, descriptive tail)."
+        },
+        {
+          "title": "No Open Graph meta tags",
+          "severity": "High",
+          "description": "No og:title, og:description, og:image, og:type, or og:url defined. Social shares of the site will show no preview image and may use incorrect title/description.",
+          "recommendation": "Add openGraph and twitter metadata to layout.tsx. Include a 1200x630 og:image. Set og:type to 'website'."
+        },
+        {
+          "title": "CTA buttons not linked to pages — only anchor links",
+          "severity": "Medium",
+          "description": "Multiple 'Browse Courses', 'Start Building Your Portfolio', 'View Case Studies' buttons either link to #courses anchor or are unlinked <button> elements. These create no crawlable page graph.",
+          "recommendation": "Link CTAs to real pages: /courses for Browse Courses, /about for View Case Studies. Remove or link the 'View Case Studies' button."
+        },
+        {
+          "title": "No page-level metadata for inner routes",
+          "severity": "Medium",
+          "description": "Inner routes (/login, /signup, /apply/[courseId], /student/*) have no custom metadata exports. They'll inherit the generic layout.tsx title.",
+          "recommendation": "Add export const metadata: Metadata to each page with unique title and description."
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 0,
+      "what_works": [],
+      "findings": [
+        {
+          "title": "No structured data anywhere on site",
+          "severity": "High",
+          "description": "Zero JSON-LD, microdata, or RDFa markup found across all pages. Site is ineligible for all rich results: FAQs, courses, breadcrumbs, sitelinks searchbox, reviews.",
+          "recommendation": "Add the following schema types as highest priority:\n1. Organization schema on layout.tsx (name, url, logo, founder, sameAs social profiles)\n2. FAQPage schema — FAQ content already exists in page.tsx, needs JSON-LD wrapper\n3. Course schema on /apply/[courseId] pages\n4. Person schema for founder (Khamare Clarke)\n5. EducationalOrganization schema"
+        },
+        {
+          "title": "FAQ content exists but has no FAQPage schema",
+          "severity": "High",
+          "description": "page.tsx contains 5 structured Q&A pairs (Who is this for? What makes this different? etc.) but no FAQPage JSON-LD. This is a missed opportunity for FAQ rich results in Google.",
+          "recommendation": "Add a FAQPage JSON-LD script block to the FAQSection component or inject via layout metadata."
+        }
+      ]
+    },
+    {
+      "name": "Performance (Core Web Vitals)",
+      "score": 45,
+      "what_works": [
+        "Google Fonts loaded via next/font (automatic optimization, no render-blocking)",
+        "display: swap on both font families",
+        "Tailwind CSS (minimal CSS bundle)",
+        "No large images (icon-only design)"
+      ],
+      "findings": [
+        {
+          "title": "Heavy animation load on all above-fold content",
+          "severity": "Medium",
+          "description": "Multiple framer-motion animations run simultaneously on page load: animate-pulse-slow, animate-float (multiple instances), animate-shimmer on every gold gradient text span. The Hero component initiates 6+ simultaneous motion animations. This will delay LCP and increase TBT (Total Blocking Time).",
+          "recommendation": "Lazy-load below-fold animations. Only animate the H1 and primary CTA above the fold on initial load. Use CSS animations instead of JS for static elements like shimmer effects."
+        },
+        {
+          "title": "No LCP element optimisation",
+          "severity": "Medium",
+          "description": "The H1 hero text is the likely LCP element. It's wrapped in multiple motion.div containers with opacity: 0 initial state, meaning it starts invisible and animates in. Googlebot's CWV measurement tool will record a poor LCP.",
+          "recommendation": "Consider rendering the H1 without the opacity: 0 initial animation, or use Next.js's priority loading pattern. At minimum, ensure the H1 is visible within 2.5s."
+        },
+        {
+          "title": "Client-side data fetching for courses section",
+          "severity": "Medium",
+          "description": "CoursesSection.tsx uses useEffect + fetch('/api/courses') to load courses. This means: page loads, JS parses, then API call fires, then courses render. Causes layout shift and delays content.",
+          "recommendation": "Fetch courses in a Server Component and pass as props, or use React Suspense with a server action."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness (GEO)",
+      "score": 22,
+      "what_works": [
+        "Clear, citable value propositions ('Build systems. Create leverage. Own the outcome.')",
+        "Founder attribution present",
+        "FAQ content is citation-friendly"
+      ],
+      "findings": [
+        {
+          "title": "No llms.txt file",
+          "severity": "Medium",
+          "description": "No /llms.txt found. AI crawlers (ChatGPT, Perplexity, Claude) use llms.txt to understand site structure and permission for AI training/citation.",
+          "recommendation": "Create public/llms.txt with site description, key pages, and allowed AI crawler permissions."
+        },
+        {
+          "title": "Site blocks all crawlers including AI crawlers due to 500 error",
+          "severity": "Critical",
+          "description": "Same as Technical SEO critical issue — the 500 error prevents any crawler, including AI citation crawlers like Perplexity and ChatGPT, from indexing the site.",
+          "recommendation": "Fix Supabase env vars first. This resolves AI crawler access as a side effect."
+        },
+        {
+          "title": "No structured data for AI parsability",
+          "severity": "High",
+          "description": "AI systems prefer pages with clear semantic structure. Lack of FAQ schema, Course schema, and Organization schema reduces citability and passage extraction quality.",
+          "recommendation": "Add schema.org structured data (see Schema category) — this directly improves AI citation quality."
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Critical Fixes (Site Must Work First)",
+        "timeframe": "Day 1",
+        "items": [
+          "Add NEXT_PUBLIC_SUPABASE_URL + NEXT_PUBLIC_SUPABASE_ANON_KEY to .env.local and hosting env vars — fixes 500 error",
+          "Narrow middleware matcher to protected routes only (/student, /admin, /apply) — makes homepage publicly accessible without Supabase dependency",
+          "Convert app/page.tsx from 'use client' to Server Component — fixes crawler content visibility"
+        ]
+      },
+      {
+        "name": "Phase 2: Discoverability Foundation",
+        "timeframe": "Week 1",
+        "items": [
+          "Create app/robots.ts — allow all, disallow /admin, /api",
+          "Create app/sitemap.ts — include all public pages + dynamic course routes",
+          "Add metadataBase + OG/Twitter tags to layout.tsx metadata",
+          "Update title tag to include keywords: 'Leverage Academy | AI Systems & Business Infrastructure for Builders'",
+          "Add FAQPage JSON-LD schema to FAQSection",
+          "Add Organization + Person JSON-LD to layout.tsx",
+          "Fix footer links: create /privacy, /terms, /contact stubs"
+        ]
+      },
+      {
+        "name": "Phase 3: Content & Authority",
+        "timeframe": "Weeks 2-3",
+        "items": [
+          "Create /about page with founder bio, credentials, and verifiable proof links",
+          "Add unique metadata exports to /login, /signup, /apply/[courseId] pages",
+          "Add Course JSON-LD schema to /apply/[courseId] pages",
+          "Create public/llms.txt for AI crawler guidance",
+          "Update copyright year to dynamic {new Date().getFullYear()}",
+          "Link all CTA buttons to real pages (not just #anchors)"
+        ]
+      },
+      {
+        "name": "Phase 4: Performance & Monitoring",
+        "timeframe": "Month 2",
+        "items": [
+          "Refactor CoursesSection to use Server Component data fetching",
+          "Audit and reduce above-fold animations for LCP improvement",
+          "Set up Google Search Console and submit sitemap",
+          "Set up Vercel Analytics or GA4 for traffic monitoring",
+          "Add canonical URL to prevent duplicate content on www vs non-www"
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  }
+}
