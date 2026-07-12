@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
 import { emitEmpireActivity } from '@/lib/empire-activity'
+import { emitFleetIngest } from '@/lib/fleet-ingest'
 
 export async function POST(request: Request) {
   try {
@@ -92,6 +93,17 @@ export async function POST(request: Request) {
         experience_level,
       },
       request,
+    })
+
+    void emitFleetIngest({
+      event_type: 'lead',
+      summary: `Course application: ${name} (${emailNormalized}) — ${course.title}`,
+      payload: {
+        application_id: application?.id,
+        course_id,
+        course_title: course.title,
+        experience_level,
+      },
     })
 
     return NextResponse.json({
