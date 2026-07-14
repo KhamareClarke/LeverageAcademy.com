@@ -80,7 +80,7 @@ export async function POST(request: Request) {
       )
     }
 
-    void emitEmpireActivity({
+    await emitEmpireActivity({
       event_type: 'lead_created',
       user_email: emailNormalized,
       user_id: user_id,
@@ -95,7 +95,7 @@ export async function POST(request: Request) {
       request,
     })
 
-    void emitFleetIngest({
+    await emitFleetIngest({
       event_type: 'lead',
       summary: `Course application: ${name} (${emailNormalized}) — ${course.title}`,
       payload: {

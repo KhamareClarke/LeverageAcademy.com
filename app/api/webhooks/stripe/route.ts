@@ -167,7 +167,7 @@ export async function POST(request: Request) {
         console.error('[notifications] enrollment notification failed:', err?.message)
       }
 
-      void emitEmpireActivity({
+      await emitEmpireActivity({
         event_type: 'payment_succeeded',
         user_email: userRow?.email || null,
         user_id: userId,

@@ -26,7 +26,7 @@ export async function POST(request: Request) {
       .single()
 
     if (codeError || !codeData) {
-      void emitEmpireActivity({
+      await emitEmpireActivity({
         event_type: 'signin_failed',
         user_email: email,
         message: 'Invalid or expired verification code',
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
       .delete()
       .eq('id', codeData.id)
 
-    void emitEmpireActivity({
+    await emitEmpireActivity({
       event_type: 'verify_email',
       user_email: email,
       request,
